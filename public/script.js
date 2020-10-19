@@ -5,10 +5,18 @@ const videoGrid = document.getElementById("video-grid");
 //     port: 3001 || process.env.PORT,
 // });
 
-const myPeer = new Peer(undefined, {
-  host: "peerjs-server.herokuapp.com",
-  secure: true,
+//Peer server
+var privateKey = fs.readFileSync("sslcert/server.key", "utf8");
+var certificate = fs.readFileSync("sslcert/server.crt", "utf8");
+
+const { PeerServer } = require("peer");
+const myPeer = PeerServer({
   port: 3001,
+  path: "/",
+  ssl: {
+    key: privateKey,
+    cert: certificate,
+  },
 });
 
 const myVideo = document.createElement("video");
