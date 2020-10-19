@@ -1,23 +1,11 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
-// const myPeer = new Peer(undefined, {
-//     host: "/",
-//     port: 3001 || process.env.PORT,
-// });
-
-//Peer server
-var privateKey = fs.readFileSync("sslcert/server.key", "utf8");
-var certificate = fs.readFileSync("sslcert/server.crt", "utf8");
-
-const { PeerServer } = require("peer");
-const myPeer = PeerServer({
-  port: 3001,
-  path: "/",
-  ssl: {
-    key: privateKey,
-    cert: certificate,
-  },
+const myPeer = new Peer(undefined, {
+    host: "/",
+    port: 3001 || process.env.PORT,
 });
+
+
 
 const myVideo = document.createElement("video");
 myVideo.muted = true;
