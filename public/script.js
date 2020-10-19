@@ -1,9 +1,16 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
+// const myPeer = new Peer(undefined, {
+//     host: "/",
+//     port: 3001 || process.env.PORT,
+// });
+
 const myPeer = new Peer(undefined, {
-  host: "/",
-  port: 3001 || process.env.PORT,
+  host: "peerjs-server.herokuapp.com",
+  secure: true,
+  port: 3001,
 });
+
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 const peers = {};
